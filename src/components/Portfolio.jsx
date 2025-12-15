@@ -1,5 +1,7 @@
 ﻿import { motion } from "framer-motion";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
+import { SiVercel, SiRender, SiPythonanywhere } from "react-icons/si";
+import { SiStreamlit } from "react-icons/si";
 import {
   FaGithub,
   FaLinkedin,
@@ -186,6 +188,7 @@ export default function Portfolio() {
             ["Tailwind", <SiTailwindcss />],
             ["Python", <FaPython />],
             ["Flask", <SiFlask />],
+            ["Streamlit", <SiStreamlit />], // ✅ Added here
             ["Django", <SiDjango />],
             ["Machine Learning", <SiScikitlearn />],
             ["Git", <FaGit />],
@@ -203,6 +206,97 @@ export default function Portfolio() {
               {name}
             </motion.div>
           ))}
+        </div>
+      </motion.section>
+
+      {/* TOOLS & DEPLOYMENT */}
+      <motion.section
+        id="tools"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="max-w-6xl mx-auto px-6 py-24"
+      >
+        <motion.h2
+          variants={fadeUp}
+          className="text-4xl font-extrabold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400"
+        >
+          Tools & Deployment
+        </motion.h2>
+
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* VERCEL */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 
+      shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiVercel className="text-3xl text-white" />
+              <h3 className="text-xl font-semibold">Vercel</h3>
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              Deploy fast, scalable frontend apps with automatic CI/CD and
+              global CDN caching.
+            </p>
+          </motion.div>
+
+          {/* RENDER */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 
+      shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiRender className="text-3xl text-cyan-400" />
+              <h3 className="text-xl font-semibold">Render</h3>
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              Hosting for APIs, full-stack apps & databases with simple
+              deployments and real-time logs.
+            </p>
+          </motion.div>
+
+          {/* PYTHONANYWHERE */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 
+      shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiPythonanywhere className="text-3xl text-blue-300" />
+              <h3 className="text-xl font-semibold">PythonAnywhere</h3>
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              Cloud platform used for hosting Python & Flask apps, automation
+              scripts, & ML dashboards.
+            </p>
+          </motion.div>
+
+          {/* STREAMLIT CLOUD — NEW CARD */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 
+      shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiStreamlit className="text-3xl text-red-400" />
+              <h3 className="text-xl font-semibold">Streamlit Cloud</h3>
+            </div>
+            <p className="text-sm text-zinc-400 leading-relaxed">
+              One-click deploy ML apps with secure secrets, instant updates &
+              built-in analytics.
+            </p>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -598,8 +692,6 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <footer className="py-16 text-center border-t border-white/10">
-        
-        
         <p className="text-xs text-zinc-500">© 2025 Mahadev Chidanand Athani</p>
       </footer>
     </div>
