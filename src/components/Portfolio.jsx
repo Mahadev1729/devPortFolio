@@ -1,4 +1,5 @@
 ﻿import { motion } from "framer-motion";
+import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import {
   FaGithub,
   FaLinkedin,
@@ -44,7 +45,7 @@ export default function Portfolio() {
     "mahadev@linux:~$ whoami",
     "Mahadev Chidanand Athani",
     "mahadev@linux:~$ cat role.txt",
-    "AI & ML Engineer | Frontend Developer",
+    "AI & ML Student | Frontend Developer",
     "mahadev@linux:~$ skills --top",
     "React · Tailwind · Python · Machine Learning · Flask",
   ];
@@ -448,33 +449,157 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* PROBLEM SOLVING PROFILES */}
+      <motion.section
+        id="profiles"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="max-w-6xl mx-auto px-6 py-24"
+      >
+        <motion.h2
+          variants={fadeUp}
+          className="text-4xl font-extrabold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400"
+        >
+          Problem Solving Profiles
+        </motion.h2>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* LEETCODE CARD */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiLeetcode className="text-3xl text-yellow-400" />
+              <h3 className="text-xl font-semibold">LeetCode</h3>
+            </div>
+
+            <p className="text-sm text-zinc-400 mb-4">
+              Solved data structures, algorithms, SQL & system design problems
+              to improve problem-solving skills and coding efficiency.
+            </p>
+
+            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
+              <li>Daily streak practice</li>
+              <li>
+                DSA mastery including Trees, DP, Graphs, Heaps, Backtracking
+              </li>
+              <li>Active contest participation</li>
+            </ul>
+
+            <a
+              href="https://leetcode.com/u/dev723PM"
+              target="_blank"
+              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
+            >
+              <SiLeetcode /> View Profile
+            </a>
+          </motion.div>
+
+          {/* HACKERRANK CARD */}
+          <motion.div
+            variants={fadeUp}
+            whileHover={{ y: -10, scale: 1.04 }}
+            transition={{ type: "spring" }}
+            className="rounded-2xl bg-zinc-900/70 border border-white/10 p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <SiHackerrank className="text-3xl text-green-400" />
+              <h3 className="text-xl font-semibold">HackerRank</h3>
+            </div>
+
+            <p className="text-sm text-zinc-400 mb-4">
+              Practiced competitive programming challenges across Python, SQL,
+              and problem-solving domains.
+            </p>
+
+            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
+              <li>Gold badges in Problem Solving</li>
+              <li>Python & SQL proficiency verified</li>
+              <li>Focused on time-efficiency and logic optimization</li>
+            </ul>
+
+            <a
+              href="https://www.hackerrank.com/blue_vine"
+              target="_blank"
+              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
+            >
+              <SiHackerrank /> View Profile
+            </a>
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* CONTACT */}
       <section id="contact" className="max-w-4xl mx-auto px-6 py-24">
-        <h2 className="text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
+        <h2 className="text-4xl font-extrabold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400">
           Contact
         </h2>
-        <p className="text-zinc-400 text-lg mb-4">
-          📧 mahadev.c.a@campusuvce.in <br />
-          📞 +91 8073700212
-        </p>
+
+        <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-indigo-500/40 via-purple-500/40 to-cyan-500/40 shadow-xl">
+          <div className="rounded-2xl bg-zinc-900/70 backdrop-blur-xl p-8 border border-white/10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="space-y-6 text-lg text-zinc-300"
+            >
+              {/* Email */}
+              <motion.a
+                href="mailto:mahadev.c.a@campusuvce.in"
+                whileHover={{ scale: 1.05, x: 8 }}
+                className="flex items-center gap-4 p-4 rounded-xl bg-zinc-800/40 border border-white/10 hover:border-indigo-400/40 transition-all hover:shadow-indigo-500/20"
+              >
+                <span className="text-2xl">📧</span>
+                <span className="font-medium">mahadev.c.a@campusuvce.in</span>
+              </motion.a>
+
+              {/* Phone */}
+              <motion.a
+                href="tel:+918073700212"
+                whileHover={{ scale: 1.05, x: 8 }}
+                className="flex items-center gap-4 p-4 rounded-xl bg-zinc-800/40 border border-white/10 hover:border-cyan-400/40 transition-all hover:shadow-cyan-500/20"
+              >
+                <span className="text-2xl">📞</span>
+                <span className="font-medium">+91 8073700212</span>
+              </motion.a>
+
+              {/* Social Links */}
+              <div className="pt-6">
+                <p className="text-zinc-500 text-sm mb-3">Find me online:</p>
+
+                <div className="flex gap-6 text-3xl">
+                  <motion.a
+                    href="https://github.com/Mahadev1729"
+                    whileHover={{ scale: 1.2 }}
+                    className="hover:text-indigo-400 transition"
+                  >
+                    <FaGithub />
+                  </motion.a>
+
+                  <motion.a
+                    href="https://www.linkedin.com/in/mahadev-athani-6661b3288"
+                    whileHover={{ scale: 1.2 }}
+                    className="hover:text-indigo-400 transition"
+                  >
+                    <FaLinkedin />
+                  </motion.a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* FOOTER */}
       <footer className="py-16 text-center border-t border-white/10">
-        <div className="flex justify-center gap-6 text-2xl mb-4">
-          <a
-            href="https://github.com/Mahadev1729"
-            className="hover:text-indigo-400"
-          >
-            <FaGithub />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/mahadev-athani-6661b3288"
-            className="hover:text-indigo-400"
-          >
-            <FaLinkedin />
-          </a>
-        </div>
+        
+        
         <p className="text-xs text-zinc-500">© 2025 Mahadev Chidanand Athani</p>
       </footer>
     </div>
