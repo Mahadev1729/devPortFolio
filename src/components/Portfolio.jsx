@@ -462,10 +462,16 @@ export default function Portfolio() {
       {/* FOOTER */}
       <footer className="py-16 text-center border-t border-white/10">
         <div className="flex justify-center gap-6 text-2xl mb-4">
-          <a href="#" className="hover:text-indigo-400">
+          <a
+            href="https://github.com/Mahadev1729"
+            className="hover:text-indigo-400"
+          >
             <FaGithub />
           </a>
-          <a href="#" className="hover:text-indigo-400">
+          <a
+            href="https://www.linkedin.com/in/mahadev-athani-6661b3288"
+            className="hover:text-indigo-400"
+          >
             <FaLinkedin />
           </a>
         </div>
