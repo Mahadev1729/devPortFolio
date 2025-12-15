@@ -348,7 +348,7 @@ export default function Portfolio() {
             </p>
 
             <a
-              href="https://github.com/mahadevathani/ai-health-chatbot"
+              href="https://github.com/Mahadev1729/AI-Health-Chat-Bot"
               target="_blank"
               className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
             >
@@ -392,7 +392,7 @@ export default function Portfolio() {
             </p>
 
             <a
-              href="https://github.com/mahadevathani/movie-gpt"
+              href="https://github.com/Mahadev1729/netflixgpt"
               target="_blank"
               className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
             >
@@ -438,7 +438,7 @@ export default function Portfolio() {
             </p>
 
             <a
-              href="https://github.com/mahadevathani/fire-weather-index"
+              href="https://github.com/Mahadev1729/End_to_End_MLproject"
               target="_blank"
               className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
             >
