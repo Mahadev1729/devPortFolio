@@ -696,4 +696,4 @@ export default function Portfolio() {
       </footer>
     </div>
   );
-}
+} // create different compenent for each section
