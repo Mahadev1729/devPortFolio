@@ -461,7 +461,7 @@ export default function Portfolio() {
             <h3 className="text-xl font-semibold mb-2">Movie-GPT</h3>
 
             <p className="text-sm text-indigo-400 mb-3">
-              React • Tailwind CSS • Firebase • TMDB API
+              React • Tailwind CSS • Firebase • TMDB API • Cohere API
             </p>
 
             <p className="text-sm text-zinc-400 leading-relaxed mb-4">
