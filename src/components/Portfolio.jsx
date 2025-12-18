@@ -1,4 +1,4 @@
-﻿import { motion } from "framer-motion";
+﻿﻿import { motion } from "framer-motion";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { SiVercel, SiRender, SiPythonanywhere } from "react-icons/si";
 import { SiStreamlit } from "react-icons/si";
