@@ -10,11 +10,14 @@ import ContactSection from "./ContactSection";
 import Cursor from "./Cursor";
 import LoadingScreen from "./LoadingScreen";
 import { Suspense, lazy } from "react";
+const ThreeCanvas = lazy(() => import("./three/ThreeCanvas"));
+import UIOverlay from "./UIOverlay";
 
 const AnimatedAurora = lazy(() => import("./AnimatedAurora"));
 const FloatingTech = lazy(() => import("./FloatingTech"));
 
 export default function Portfolio() {
+  const [selected, setSelected] = useState(null);
   const [hovered, setHovered] = useState(null);
   const blobRefs = useRef([]);
 
@@ -41,6 +44,12 @@ export default function Portfolio() {
     <div className="relative min-h-screen bg-zinc-950 text-zinc-100 font-['Inter'] overflow-hidden">
       <LoadingScreen />
       <Cursor />
+      {/* 3D background canvas (lazy loaded) */}
+      <Suspense fallback={null}>
+        <div className="absolute inset-0 -z-10 pointer-events-auto">
+          <ThreeCanvas onSelect={(id) => setSelected(id)} />
+        </div>
+      </Suspense>
       {/* FLOATING BACKGROUND BLOBS */}
       <motion.div
         ref={(el) => (blobRefs.current[0] = el)}
@@ -111,6 +120,26 @@ export default function Portfolio() {
       <ProjectsSection />
       <ProfilesSection />
       <ContactSection />
+
+      <UIOverlay
+        active={!!selected}
+        onClose={() => setSelected(null)}
+        content={
+          selected
+            ? {
+                title: selected.toUpperCase(),
+                body:
+                  selected === "about"
+                    ? "Hi — I'm Mahadev. I'm a developer focused on AI and web apps."
+                    : selected === "skills"
+                      ? "Skills: React, Three.js, Python, ML, Tailwind"
+                      : selected === "projects"
+                        ? "Projects: Interactive 3D portfolio, ML demos, web apps"
+                        : "Get in touch via the contact form.",
+              }
+            : null
+        }
+      />
 
       {/* FOOTER */}
       <footer className="py-16 text-center border-t border-white/10 bg-zinc-950/70 backdrop-blur-xl">
