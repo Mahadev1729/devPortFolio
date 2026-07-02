@@ -3,12 +3,12 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function HeroSection() {
   const lines = [
-    "mahadev@linux:~$ whoami",
+    "mahadev@portfolio:~$ whoami",
     "Mahadev Chidanand Athani",
-    "mahadev@linux:~$ cat role.txt",
-    "AI & ML Student | Frontend Developer",
-    "mahadev@linux:~$ skills --top",
-    "React · Tailwind · Python · Machine Learning · Flask",
+    "mahadev@portfolio:~$ cat role.txt",
+    "Full-Stack Developer | AI/ML Engineer | Problem Solver",
+    "mahadev@portfolio:~$ skills --top",
+    "React · Python · Machine Learning · Cloud Development",
   ];
 
   const [displayed, setDisplayed] = useState([]);
@@ -36,7 +36,7 @@ export default function HeroSection() {
           setCharIndex(0);
         }
       },
-      charIndex < lines[lineIndex].length ? 35 : 350
+      charIndex < lines[lineIndex].length ? 30 : 400
     );
 
     return () => clearTimeout(timeout);
@@ -59,12 +59,12 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="pt-32 sm:pt-36 md:pt-40 flex justify-center px-3 sm:px-4">
+    <section className="pt-20 md:pt-32 pb-20 flex justify-center px-4 sm:px-6">
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8 }}
-        className="relative max-w-3xl w-full [perspective:1300px]"
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative max-w-4xl w-full [perspective:1300px]"
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={resetHeroTilt}
       >
@@ -76,7 +76,117 @@ export default function HeroSection() {
           }}
           className="relative"
         >
-          <div className="absolute -inset-2 blur-2xl rounded-2xl bg-gradient-to-r from-indigo-500/25 via-purple-500/20 to-pink-500/20" />
+          {/* Subtle gradient background glow */}
+          <div className="absolute -inset-4 blur-3xl rounded-3xl bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-pink-500/10 opacity-60" />
+
+          <div className="relative rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-700/50 font-mono text-emerald-400 shadow-card backdrop-blur-xl overflow-hidden">
+            {/* Animated border glow */}
+            <motion.div
+              className="absolute -inset-px rounded-2xl pointer-events-none"
+              animate={{ opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4, repeat: Infinity }}
+              style={{
+                background:
+                  "linear-gradient(120deg, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.15), rgba(236, 72, 153, 0.1))",
+                filter: "blur(12px)",
+              }}
+            />
+
+            {/* Terminal header */}
+            <div className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-slate-800/50 border-b border-slate-700/30 backdrop-blur-sm">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400/80" />
+                <div className="w-3 h-3 rounded-full bg-green-500/80" />
+              </div>
+              <span className="ml-3 text-xs sm:text-sm text-slate-400 font-medium">
+                mahadev@portfolio:~
+              </span>
+            </div>
+
+            {/* Terminal content */}
+            <div className="p-6 sm:p-8 space-y-3 text-sm sm:text-base">
+              {/* Profile image */}
+              <div className="flex justify-center mb-6">
+                <motion.div
+                  className="relative"
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                >
+                  <motion.div
+                    className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 blur-lg"
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                  />
+                  <img
+                    src="/myImage.jpg"
+                    alt="Profile"
+                    className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full border-2 border-slate-700 shadow-lg object-cover"
+                  />
+                </motion.div>
+              </div>
+
+              {/* Terminal lines */}
+              <div className="space-y-2">
+                {displayed.map((line, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <span className="text-slate-500">$</span>
+                    <span className="ml-2 text-emerald-400">{line}</span>
+                  </motion.div>
+                ))}
+
+                {/* Cursor */}
+                {lineIndex < lines.length && (
+                  <div>
+                    <span className="text-slate-500">$</span>
+                    <span className="ml-2">
+                      {currentLine}
+                      <motion.span
+                        animate={{ opacity: [1, 0] }}
+                        transition={{ duration: 0.8, repeat: Infinity }}
+                        className="text-emerald-400"
+                      >
+                        ▋
+                      </motion.span>
+                    </span>
+                  </div>
+                )}
+              </div>
+
+              {/* CTA Buttons */}
+              {lineIndex >= lines.length && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-wrap gap-3 pt-4"
+                >
+                  <a
+                    href="#projects"
+                    className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-colors duration-200"
+                  >
+                    View Projects
+                  </a>
+                  <a
+                    href="#contact"
+                    className="px-6 py-2 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm transition-colors duration-200"
+                  >
+                    Get in Touch
+                  </a>
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
 
           <div className="relative rounded-2xl bg-zinc-900/85 border border-white/15 font-['JetBrains_Mono'] text-green-400 shadow-[0_20px_55px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl">
             <div

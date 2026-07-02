@@ -1,65 +1,171 @@
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function ContactSection() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4 },
+    },
+  };
+
+  const contactLinks = [
+    {
+      label: "Email",
+      value: "mahadev.c.a@campusuvce.in",
+      href: "mailto:mahadev.c.a@campusuvce.in",
+      icon: <FaEnvelope className="text-2xl" />,
+      color: "blue",
+    },
+    {
+      label: "Phone",
+      value: "+91 8073700212",
+      href: "tel:+918073700212",
+      icon: <FaPhone className="text-2xl" />,
+      color: "cyan",
+    },
+  ];
+
+  const socialLinks = [
+    {
+      label: "GitHub",
+      href: "https://github.com/Mahadev1729",
+      icon: <FaGithub className="text-3xl" />,
+    },
+    {
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/mahadev-athani-6661b3288",
+      icon: <FaLinkedin className="text-3xl" />,
+    },
+  ];
+
   return (
-    <section id="contact" className="max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24">
-      <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-        Contact
-      </h2>
+    <section
+      id="contact"
+      className="max-w-4xl mx-auto px-4 sm:px-6 py-20 md:py-28"
+    >
+      {/* Section header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-12"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          Let's Connect
+        </h2>
+        <p className="text-lg text-slate-400">
+          Open to opportunities, collaborations, and conversations about tech,
+          innovation, and creative solutions.
+        </p>
+      </motion.div>
 
-      <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-indigo-500/50 via-purple-500/45 to-cyan-500/50 shadow-[0_20px_50px_-20px_rgba(79,70,229,0.8)]">
-        <div className="rounded-2xl bg-zinc-900/75 backdrop-blur-2xl p-5 sm:p-8 border border-white/15">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-5 sm:space-y-6 text-base sm:text-lg text-zinc-300"
+      {/* Contact methods */}
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="space-y-4 mb-12"
+      >
+        {contactLinks.map((link, index) => (
+          <motion.a
+            key={index}
+            href={link.href}
+            variants={itemVariants}
+            whileHover={{ x: 8 }}
+            className={`group relative p-5 sm:p-6 rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800/50 to-slate-900/50 hover:border-${link.color}-500/50 transition-all duration-300 overflow-hidden`}
           >
-            <motion.a
-              href="mailto:mahadev.c.a@campusuvce.in"
-              whileHover={{ scale: 1.04, x: 8, rotateX: 4, rotateY: -4 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-zinc-800/45 border border-white/15 hover:border-indigo-400/40 transition-all hover:shadow-indigo-500/25"
-            >
-              <span className="text-2xl">📧</span>
-              <span className="font-medium break-all">mahadev.c.a@campusuvce.in</span>
-            </motion.a>
+            {/* Hover background */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-r from-${link.color}-600/0 to-${link.color}-600/0 group-hover:from-${link.color}-600/5 group-hover:to-${link.color}-600/5 transition-all duration-300 pointer-events-none`}
+            />
 
-            <motion.a
-              href="tel:+918073700212"
-              whileHover={{ scale: 1.04, x: 8, rotateX: 4, rotateY: -4 }}
-              className="flex items-center gap-4 p-4 rounded-xl bg-zinc-800/45 border border-white/15 hover:border-cyan-400/40 transition-all hover:shadow-cyan-500/25"
-            >
-              <span className="text-2xl">📞</span>
-              <span className="font-medium">+91 8073700212</span>
-            </motion.a>
+            <div className="relative flex items-center gap-4">
+              <span
+                className={`text-${link.color}-400 group-hover:text-${link.color}-300 transition-colors`}
+              >
+                {link.icon}
+              </span>
 
-            <div className="pt-6">
-              <p className="text-zinc-500 text-sm mb-3">Find me online:</p>
-
-              <div className="flex gap-6 text-3xl">
-                <motion.a
-                  href="https://github.com/Mahadev1729"
-                  whileHover={{ scale: 1.2 }}
-                  className="hover:text-indigo-400 transition"
-                >
-                  <FaGithub />
-                </motion.a>
-
-                <motion.a
-                  href="https://www.linkedin.com/in/mahadev-athani-6661b3288"
-                  whileHover={{ scale: 1.2 }}
-                  className="hover:text-indigo-400 transition"
-                >
-                  <FaLinkedin />
-                </motion.a>
+              <div className="flex-1">
+                <p className="text-sm text-slate-500 font-medium">
+                  {link.label}
+                </p>
+                <p className="text-white font-medium break-all">{link.value}</p>
               </div>
+
+              <span className="text-slate-600 group-hover:text-slate-400 transition-colors">
+                →
+              </span>
             </div>
-          </motion.div>
-        </div>
+          </motion.a>
+        ))}
+      </motion.div>
+
+      {/* Divider */}
+      <div className="flex items-center gap-4 mb-12">
+        <div className="flex-1 h-px bg-gradient-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
+        <p className="text-slate-500 text-sm font-medium">Find me online</p>
+        <div className="flex-1 h-px bg-gradient-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
       </div>
+
+      {/* Social links */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="flex gap-4 sm:gap-6 justify-center"
+      >
+        {socialLinks.map((link, index) => (
+          <motion.a
+            key={index}
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+            whileHover={{ scale: 1.15, y: -6 }}
+            whileTap={{ scale: 0.95 }}
+            className="p-4 rounded-xl bg-slate-800/50 border border-slate-700/50 text-slate-300 hover:text-blue-400 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/20 group"
+            title={link.label}
+          >
+            <span className="group-hover:animate-bounce">{link.icon}</span>
+          </motion.a>
+        ))}
+      </motion.div>
+
+      {/* CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.3 }}
+        className="mt-16 p-6 rounded-2xl bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-500/10 border border-blue-500/20 text-center"
+      >
+        <p className="text-slate-300 mb-4">
+          Whether you have a project in mind or just want to chat, I'm always
+          excited to connect with fellow developers and innovators.
+        </p>
+        <a
+          href="mailto:mahadev.c.a@campusuvce.in"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all duration-200 hover:shadow-lg hover:shadow-blue-500/50"
+        >
+          Start a conversation
+        </a>
+      </motion.div>
     </section>
   );
 }
-

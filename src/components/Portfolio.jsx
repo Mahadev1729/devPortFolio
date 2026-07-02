@@ -56,7 +56,7 @@ export default function Portfolio() {
     };
   }, []);
   return (
-    <div className="relative min-h-screen bg-zinc-950 text-zinc-100 font-['Inter'] overflow-hidden">
+    <div className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 font-['Inter'] overflow-hidden">
       <LoadingScreen />
       <Cursor />
       {/* 3D background canvas (lazy loaded) */}
@@ -67,53 +67,57 @@ export default function Portfolio() {
           </div>
         </Suspense>
       )}
-      {/* FLOATING BACKGROUND BLOBS */}
+
+      {/* Professional background blobs */}
       <motion.div
         ref={(el) => (blobRefs.current[0] = el)}
-        data-depth="0.18"
-        className="float-blob absolute -top-40 -left-40 w-[30rem] h-[30rem] bg-indigo-500/25 blur-[140px] rounded-full"
-        animate={{ x: [0, 100, 0], y: [0, 120, 0] }}
-        transition={{ duration: 18, repeat: Infinity }}
+        data-depth="0.15"
+        className="float-blob absolute -top-32 -left-32 w-96 h-96 bg-blue-600/15 blur-[120px] rounded-full pointer-events-none"
+        animate={{ x: [0, 80, 0], y: [0, 100, 0] }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         ref={(el) => (blobRefs.current[1] = el)}
-        data-depth="0.12"
-        className="float-blob absolute top-1/3 -right-40 w-[30rem] h-[30rem] bg-cyan-500/25 blur-[140px] rounded-full"
-        animate={{ x: [0, -100, 0], y: [0, -120, 0] }}
-        transition={{ duration: 24, repeat: Infinity }}
+        data-depth="0.10"
+        className="float-blob absolute top-1/4 -right-32 w-96 h-96 bg-purple-600/10 blur-[120px] rounded-full pointer-events-none"
+        animate={{ x: [0, -80, 0], y: [0, -100, 0] }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         ref={(el) => (blobRefs.current[2] = el)}
-        data-depth="0.09"
-        className="float-blob absolute bottom-0 left-1/3 w-[24rem] h-[24rem] bg-fuchsia-500/15 blur-[130px] rounded-full"
-        animate={{ x: [0, 70, -40, 0], y: [0, -50, 20, 0] }}
-        transition={{ duration: 26, repeat: Infinity }}
+        data-depth="0.08"
+        className="float-blob absolute bottom-1/4 left-1/4 w-80 h-80 bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none"
+        animate={{ x: [0, 60, -40, 0], y: [0, -60, 30, 0] }}
+        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
       />
+
+      {/* Subtle aurora effect */}
       <Suspense fallback={null}>
         <AnimatedAurora />
       </Suspense>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.12),transparent_38%),radial-gradient(circle_at_70%_70%,rgba(6,182,212,0.12),transparent_35%)]" />
+
+      {/* Professional overlay gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_25%_15%,rgba(59,130,246,0.08),transparent 40%),radial-gradient(circle_at_75%_80%,rgba(34,211,238,0.08),transparent 40%)]" />
 
       {/* NAVBAR */}
       <motion.nav
         initial={{ y: -40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50
-        backdrop-blur-2xl bg-zinc-900/55 border border-white/15 rounded-2xl shadow-[0_12px_40px_-18px_rgba(99,102,241,0.7)]"
+        className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 backdrop-blur-lg bg-slate-950/70 border border-slate-700/40 rounded-xl shadow-lg"
       >
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-indigo-500/10 via-transparent to-cyan-500/10 pointer-events-none" />
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
         <div className="relative px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
-          <span className="font-extrabold tracking-wide text-base sm:text-lg bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 to-cyan-300">
+          <span className="font-bold tracking-wider text-lg sm:text-xl text-white">
             Mahadev
           </span>
 
-          <div className="hidden md:flex gap-6 text-sm">
+          <div className="hidden md:flex gap-8 text-sm font-medium">
             {["projects", "experience", "contact"].map((s) => (
               <NavLink key={s} href={`#${s}`} label={s.toUpperCase()} />
             ))}
           </div>
         </div>
-        <div className="relative flex md:hidden items-center gap-3 px-4 pb-3 text-[11px] tracking-wide uppercase overflow-x-auto scrollbar-none">
+        <div className="relative flex md:hidden items-center gap-3 px-4 pb-3 text-xs tracking-wide uppercase overflow-x-auto scrollbar-none">
           {["projects", "experience", "contact"].map((s) => (
             <NavLink key={s} href={`#${s}`} label={s} mobile />
           ))}

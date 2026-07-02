@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaArrowRight } from "react-icons/fa";
 
-function TiltCard({ children }) {
+function ProjectCard({ title, tech, description, features, outcome, github }) {
   const ref = useRef(null);
   const [style, setStyle] = useState({
     transform: "perspective(900px) rotateX(0) rotateY(0) scale(1)",
@@ -16,18 +16,19 @@ function TiltCard({ children }) {
     const y = e.clientY - rect.top;
     const px = x / rect.width - 0.5;
     const py = y / rect.height - 0.5;
-    const rotateY = px * 14;
-    const rotateX = -py * 10;
+    const rotateY = px * 8;
+    const rotateX = -py * 6;
     setStyle({
-      transform: `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.035)`,
-      boxShadow: `${-rotateY}px ${rotateX}px 40px rgba(99,102,241,0.06)`,
+      transform: `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`,
+      boxShadow: `0 20px 50px rgba(59, 130, 246, 0.25)`,
     });
   }
 
   function handleLeave() {
     setStyle({
       transform: "perspective(900px) rotateX(0) rotateY(0) scale(1)",
-      transition: "transform 500ms cubic-bezier(.2,.8,.2,1)",
+      transition:
+        "transform 400ms cubic-bezier(.2,.8,.2,1), box-shadow 400ms ease",
     });
   }
 
@@ -36,198 +37,182 @@ function TiltCard({ children }) {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      whileHover={{ y: -8 }}
-      transition={{ type: "spring" }}
-      className="relative tilt-transition neon-card neon-card-weak neon-accent rounded-2xl p-5 sm:p-6 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.8)] hover:shadow-indigo-500/30"
+      whileHover={{ y: -6 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      className="group relative rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 p-6 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
       style={{ ...style, transformStyle: "preserve-3d" }}
     >
-      <div className="card-inner relative">
-        <div className="card-ghost-orb" aria-hidden />
-        <div className="card-face">{children}</div>
+      {/* Gradient overlay on hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-purple-600/0 to-pink-500/0 group-hover:from-blue-600/5 group-hover:via-purple-600/5 group-hover:to-pink-500/5 transition-all duration-300 pointer-events-none" />
+
+      {/* Content */}
+      <div className="relative z-10">
+        {/* Title */}
+        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+          {title}
+        </h3>
+
+        {/* Tech stack */}
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tech.split(" • ").map((t, i) => (
+            <span
+              key={i}
+              className="px-3 py-1 rounded-full bg-blue-600/20 text-blue-300 text-xs font-medium border border-blue-500/30"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        {/* Description */}
+        <p className="text-slate-300 text-sm leading-relaxed mb-4">
+          {description}
+        </p>
+
+        {/* Features */}
+        <ul className="space-y-2 mb-4">
+          {features.map((feature, i) => (
+            <li
+              key={i}
+              className="text-sm text-slate-400 flex items-start gap-2"
+            >
+              <span className="text-blue-400 mt-0.5">•</span>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Outcome */}
+        <div className="mb-5 p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20">
+          <p className="text-xs font-semibold text-emerald-400 mb-1">Outcome</p>
+          <p className="text-sm text-emerald-300/80">{outcome}</p>
+        </div>
+
+        {/* GitHub link */}
+        <a
+          href={github}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-all duration-200 hover:gap-3"
+        >
+          <FaGithub />
+          View on GitHub
+          <FaArrowRight className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
+        </a>
       </div>
     </motion.div>
   );
 }
 
 export default function ProjectsSection() {
+  const projects = [
+    {
+      title: "AI Health ChatBot",
+      tech: "Python • Flask • Streamlit • Machine Learning",
+      description:
+        "An intelligent ML-powered healthcare assistant that predicts possible diseases based on user symptoms using structured medical datasets and optimized classifiers.",
+      features: [
+        "Symptom vectorization + multi-label disease prediction",
+        "Model comparison (SVM, Naive Bayes, Decision Tree)",
+        "Streamlit UI with confidence score visualization",
+        "Fast inference through optimized Flask API",
+      ],
+      outcome:
+        "Achieved 92% accuracy on validation data with fast and interpretable predictions.",
+      github: "https://github.com/Mahadev1729/AI-Health-Chat-Bot",
+    },
+    {
+      title: "Movie-GPT",
+      tech: "React • Tailwind CSS • Firebase • TMDB API",
+      description:
+        "A sleek movie exploration platform with personalized recommendations, real-time content from TMDB API, and Firebase-powered authentication.",
+      features: [
+        "Real-time movie search, genres & trending categories",
+        "Firebase Authentication (Google & Email Login)",
+        "Firestore database for saved favorites and watchlist",
+        "Responsive design with animated movie cards",
+        "AI-enhanced search suggestions",
+      ],
+      outcome:
+        "Improved user discoverability and engagement through smart search + personalized movie library.",
+      github: "https://github.com/Mahadev1729/netflixgpt",
+    },
+    {
+      title: "Fire Weather Index Prediction",
+      tech: "Python • Flask • Ridge Regression • Data Analysis",
+      description:
+        "A regression-based ML project forecasting wildfire risk levels using meteorological variables with extensive EDA and feature engineering.",
+      features: [
+        "Exploratory data analysis with heatmaps and correlations",
+        "Ridge Regression with hyperparameter tuning",
+        "Normalization + pipeline-based ML workflow",
+        "Flask interface for real-time predictions",
+        "Data visualization for insights and interpretation",
+      ],
+      outcome:
+        "Improved prediction RMSE by 18% and delivered a reliable early wildfire-risk assessment system.",
+      github: "https://github.com/Mahadev1729/End_to_End_MLproject",
+    },
+    {
+      title: "ExpenseTracker",
+      tech: "React • Node.js • Express • MongoDB • Chart.js",
+      description:
+        "A comprehensive expense management tool with budgeting, categorization, recurring transactions, and PDF report generation capabilities.",
+      features: [
+        "JWT-based authentication with protected API routes",
+        "Dashboard charts for spending visualization",
+        "Expense CRUD with categories, budgets, and recurring items",
+        "PDF export of reports for offline sharing",
+        "Real-time expense tracking",
+      ],
+      outcome:
+        "Full-stack app delivering seamless expense management with secure authentication and comprehensive reporting.",
+      github: "https://github.com/Mahadev1729/ExpenseTracker",
+    },
+  ];
+
   return (
     <section
       id="projects"
-      className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-24"
+      className="max-w-6xl mx-auto px-4 sm:px-6 py-20 md:py-28"
     >
-      <h2 className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300">
-        Projects
-      </h2>
+      {/* Section header */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mb-16"
+      >
+        <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+          Featured Projects
+        </h2>
+        <p className="text-lg text-slate-400 max-w-2xl">
+          A collection of innovative projects showcasing full-stack development,
+          machine learning, and creative problem-solving.
+        </p>
+      </motion.div>
 
-      <div className="bento-grid">
-        {/** Reusable tilt card component arranged in a bento layout */}
-        {/** eslint-disable-next-line react/prop-types */}
-        <div className="bento-item item-a">
-          <TiltCard>
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">
-              AI Health ChatBot
-            </h3>
-
-            <p className="text-sm text-indigo-400 mb-3">
-              Python • Flask • Streamlit • Machine Learning
-            </p>
-
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-              AI Health ChatBot is an intelligent, ML-powered healthcare
-              assistant designed to predict possible diseases based on user
-              symptoms. The system uses structured medical datasets,
-              multi-symptom vectorization and optimized classifiers to generate
-              accurate predictions. The user-friendly conversation interface
-              ensures that even non-technical users can interact effortlessly.
-            </p>
-
-            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
-              <li>Symptom vectorization + multi-label disease prediction</li>
-              <li>Model comparison (SVM, Naive Bayes, Decision Tree)</li>
-              <li>Streamlit UI with confidence score visualization</li>
-              <li>Fast inference through optimized Flask API</li>
-            </ul>
-
-            <p className="text-xs text-green-400 mb-4">
-              Outcome: Achieved 92% accuracy on validation data with fast and
-              interpretable predictions.
-            </p>
-
-            <a
-              href="https://github.com/Mahadev1729/AI-Health-Chat-Bot"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
-            >
-              <FaGithub /> View on GitHub
-            </a>
-          </TiltCard>
-        </div>
-
-        <div className="bento-item item-b">
-          <TiltCard>
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">Movie-GPT</h3>
-
-            <p className="text-sm text-indigo-400 mb-3">
-              React • Tailwind CSS • Firebase • TMDB API • Cohere API
-            </p>
-
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-              Movie-GPT is a sleek, modern movie exploration platform built to
-              provide users with personalized recommendations and fast access to
-              movie data. The system leverages TMDB API for real-time content
-              and Firebase for user authentication and cloud-synced favorites.
-              It features advanced search, dynamic categories, trailers, cast
-              information, and a clean, animated UI.
-            </p>
-
-            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
-              <li>Real-time movie search, genres & trending categories</li>
-              <li>Firebase Authentication (Google & Email Login)</li>
-              <li>Firestore database for saved favorites and watchlist</li>
-              <li>Responsive design with animated movie cards</li>
-              <li>AI-enhanced search suggestions for better discovery</li>
-            </ul>
-
-            <p className="text-xs text-green-400 mb-4">
-              Outcome: Improved user discoverability and engagement through
-              smart search + personalized movie library.
-            </p>
-
-            <a
-              href="https://github.com/Mahadev1729/netflixgpt"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
-            >
-              <FaGithub /> View on GitHub
-            </a>
-          </TiltCard>
-        </div>
-
-        <div className="bento-item item-c">
-          <TiltCard>
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">
-              Fire Weather Index Prediction
-            </h3>
-
-            <p className="text-sm text-indigo-400 mb-3">
-              Python • Flask • Ridge Regression • Data Analysis
-            </p>
-
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-              Fire Weather Index (FWI) Prediction is a regression-based ML
-              project aimed at forecasting the wildfire risk level using
-              meteorological variables. The project involved extensive
-              exploratory data analysis, correlation mapping, and feature
-              preprocessing. Ridge Regression was selected as the final model
-              due to its stability on noisy weather data.
-            </p>
-
-            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
-              <li>EDA: heatmaps, feature correlations, outlier treatment</li>
-              <li>Ridge Regression model with hyperparameter tuning</li>
-              <li>Normalization + pipeline-based ML workflow</li>
-              <li>Flask interface for real-time FWI predictions</li>
-              <li>Data visualization for interpretation & insights</li>
-            </ul>
-
-            <p className="text-xs text-green-400 mb-4">
-              Outcome: Improved prediction RMSE by 18% and delivered a reliable
-              system for early wildfire-risk assessment.
-            </p>
-
-            <a
-              href="https://github.com/Mahadev1729/End_to_End_MLproject"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
-            >
-              <FaGithub /> View on GitHub
-            </a>
-          </TiltCard>
-        </div>
-
-        <div className="bento-item item-d">
-          <TiltCard>
-            <h3 className="text-lg sm:text-xl font-semibold mb-2">
-              ExpenseTracker
-            </h3>
-
-            <p className="text-sm text-indigo-400 mb-3">
-              React • Node.js • Express • MongoDB • JWT • Chart.js
-            </p>
-
-            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
-              Smart Expense Tracker helps users manage expenses, set budgets,
-              categorize spending, and track recurring transactions. It includes
-              authentication, a dashboard with charts, expense forms, and PDF
-              report generation for easy sharing.
-            </p>
-
-            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
-              <li>JWT-based authentication with protected API routes</li>
-              <li>Dashboard charts for spending visualization (Chart.js)</li>
-              <li>
-                Expense CRUD with categories, budgets, and recurring items
-              </li>
-              <li>PDF export of reports for offline sharing</li>
-            </ul>
-
-            <p className="text-xs text-green-400 mb-4">
-              Repo: Full-stack app with Node/Express backend and MongoDB
-            </p>
-
-            <a
-              href="https://github.com/Mahadev1729/ExpenseTracker"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
-            >
-              <FaGithub /> View on GitHub
-            </a>
-          </TiltCard>
-        </div>
+      {/* Projects grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {projects.map((project, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <ProjectCard
+              title={project.title}
+              tech={project.tech}
+              description={project.description}
+              features={project.features}
+              outcome={project.outcome}
+              github={project.github}
+            />
+          </motion.div>
+        ))}
       </div>
     </section>
   );

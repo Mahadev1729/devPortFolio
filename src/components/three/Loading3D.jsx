@@ -8,7 +8,7 @@ export default function Loading3D() {
       <div className="mb-2">Loading scene</div>
       <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-indigo-500 via-cyan-400 to-purple-400"
+          className="h-full bg-linear-to-r from-indigo-500 via-cyan-400 to-purple-400"
           style={{ width: `${progress}%` }}
         />
       </div>
