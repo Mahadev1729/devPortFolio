@@ -9,12 +9,14 @@ import ProfilesSection from "./ProfilesSection";
 import ContactSection from "./ContactSection";
 import Cursor from "./Cursor";
 import LoadingScreen from "./LoadingScreen";
+// VSCodeMock removed
 import { Suspense, lazy } from "react";
 const ThreeCanvas = lazy(() => import("./three/ThreeCanvas"));
 import UIOverlay from "./UIOverlay";
 
 const AnimatedAurora = lazy(() => import("./AnimatedAurora"));
-const FloatingTech = lazy(() => import("./FloatingTech"));
+// Toggle to disable 3D canvas for debugging/ perf
+const DISABLE_3D = true;
 
 export default function Portfolio() {
   const [selected, setSelected] = useState(null);
@@ -22,34 +24,49 @@ export default function Portfolio() {
   const blobRefs = useRef([]);
 
   useEffect(() => {
-    function onMove(e) {
+    const last = { x: 0, y: 0 };
+    const rafRef = { id: null };
+
+    function applyTransforms() {
       const cx = window.innerWidth / 2;
       const cy = window.innerHeight / 2;
-      const dx = (e.clientX - cx) / cx; // -1 .. 1
-      const dy = (e.clientY - cy) / cy;
+      const dx = (last.x - cx) / cx; // -1 .. 1
+      const dy = (last.y - cy) / cy;
 
       blobRefs.current.forEach((el) => {
         if (!el) return;
         const depth = Number(el.dataset.depth) || 0.08;
-        const tx = dx * 40 * depth;
-        const ty = dy * 40 * depth;
+        const tx = Math.round(dx * 40 * depth);
+        const ty = Math.round(dy * 40 * depth);
         el.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
       });
+      rafRef.id = null;
     }
 
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+    function onMove(e) {
+      last.x = e.clientX;
+      last.y = e.clientY;
+      if (rafRef.id == null) rafRef.id = requestAnimationFrame(applyTransforms);
+    }
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (rafRef.id) cancelAnimationFrame(rafRef.id);
+    };
   }, []);
   return (
     <div className="relative min-h-screen bg-zinc-950 text-zinc-100 font-['Inter'] overflow-hidden">
       <LoadingScreen />
       <Cursor />
       {/* 3D background canvas (lazy loaded) */}
-      <Suspense fallback={null}>
-        <div className="absolute inset-0 -z-10 pointer-events-auto">
-          <ThreeCanvas onSelect={(id) => setSelected(id)} />
-        </div>
-      </Suspense>
+      {!DISABLE_3D && (
+        <Suspense fallback={null}>
+          <div className="absolute inset-0 -z-10 pointer-events-auto">
+            <ThreeCanvas onSelect={(id) => setSelected(id)} />
+          </div>
+        </Suspense>
+      )}
       {/* FLOATING BACKGROUND BLOBS */}
       <motion.div
         ref={(el) => (blobRefs.current[0] = el)}
@@ -74,7 +91,6 @@ export default function Portfolio() {
       />
       <Suspense fallback={null}>
         <AnimatedAurora />
-        <FloatingTech />
       </Suspense>
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(99,102,241,0.12),transparent_38%),radial-gradient(circle_at_70%_70%,rgba(6,182,212,0.12),transparent_35%)]" />
 
@@ -112,12 +128,12 @@ export default function Portfolio() {
         {/** Define NavLink inside the file so it can access motion and state easily */}
       </React.Fragment>
 
-      {/* HERO SECTION */}
+      {/* Main sections */}
       <HeroSection />
+      <ProjectsSection />
       <SkillsSection />
       <ToolsSection />
       <EducationExperienceSection />
-      <ProjectsSection />
       <ProfilesSection />
       <ContactSection />
 

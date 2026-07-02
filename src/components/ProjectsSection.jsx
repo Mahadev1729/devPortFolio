@@ -103,6 +103,7 @@ export default function ProjectsSection() {
             </a>
           </TiltCard>
         </div>
+
         <div className="bento-item item-b">
           <TiltCard>
             <h3 className="text-lg sm:text-xl font-semibold mb-2">Movie-GPT</h3>
@@ -143,6 +144,7 @@ export default function ProjectsSection() {
             </a>
           </TiltCard>
         </div>
+
         <div className="bento-item item-c">
           <TiltCard>
             <h3 className="text-lg sm:text-xl font-semibold mb-2">
@@ -177,6 +179,47 @@ export default function ProjectsSection() {
 
             <a
               href="https://github.com/Mahadev1729/End_to_End_MLproject"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-indigo-400 hover:underline"
+            >
+              <FaGithub /> View on GitHub
+            </a>
+          </TiltCard>
+        </div>
+
+        <div className="bento-item item-d">
+          <TiltCard>
+            <h3 className="text-lg sm:text-xl font-semibold mb-2">
+              ExpenseTracker
+            </h3>
+
+            <p className="text-sm text-indigo-400 mb-3">
+              React • Node.js • Express • MongoDB • JWT • Chart.js
+            </p>
+
+            <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+              Smart Expense Tracker helps users manage expenses, set budgets,
+              categorize spending, and track recurring transactions. It includes
+              authentication, a dashboard with charts, expense forms, and PDF
+              report generation for easy sharing.
+            </p>
+
+            <ul className="list-disc list-inside text-sm text-zinc-400 space-y-1 mb-4">
+              <li>JWT-based authentication with protected API routes</li>
+              <li>Dashboard charts for spending visualization (Chart.js)</li>
+              <li>
+                Expense CRUD with categories, budgets, and recurring items
+              </li>
+              <li>PDF export of reports for offline sharing</li>
+            </ul>
+
+            <p className="text-xs text-green-400 mb-4">
+              Repo: Full-stack app with Node/Express backend and MongoDB
+            </p>
+
+            <a
+              href="https://github.com/Mahadev1729/ExpenseTracker"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-indigo-400 hover:underline"

@@ -1,6 +1,6 @@
 ﻿import React, { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Stars, Html } from "@react-three/drei";
+import { Stars, Html } from "@react-three/drei";
 import MainScene from "./MainScene";
 import Loading3D from "./Loading3D";
 
@@ -31,11 +31,7 @@ export default function ThreeCanvas({ onSelect }) {
         <MainScene onSelect={onSelect} />
       </Suspense>
 
-      <OrbitControls
-        enablePan={false}
-        enableZoom={false}
-        enableRotate={false}
-      />
+      {/* OrbitControls removed to avoid non-passive wheel listeners and improve performance */}
     </Canvas>
   );
 }
