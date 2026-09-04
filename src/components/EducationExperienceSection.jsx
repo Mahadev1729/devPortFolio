@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "./animations";
 
 export default function EducationExperienceSection() {
@@ -36,7 +35,7 @@ export default function EducationExperienceSection() {
     >
       <motion.h2
         variants={fadeUp}
-        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300"
+        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-linear-to-r from-indigo-300 via-purple-300 to-cyan-300"
       >
         Education & Experience
       </motion.h2>

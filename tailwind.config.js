@@ -1,17 +1,4 @@
-<<<<<<< HEAD
-/*@type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}", // Include all JSX and TSX files in the src folder
-    "./public/index.html", // Include HTML files if applicable
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-=======
-﻿export default {
+export default {
     content: [
         "./index.html",
         "./src/**/*.{js,jsx}",
@@ -64,4 +51,3 @@ module.exports = {
     },
     plugins: [],
 };
->>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9

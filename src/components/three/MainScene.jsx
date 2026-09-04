@@ -39,10 +39,9 @@ export default function MainScene({ onSelect }) {
         <meshStandardMaterial color="#030317" metalness={0.2} roughness={0.6} />
       </mesh>
 
-      {planets.map((p, i) => (
+      {planets.map((p) => (
         <FloatingPlanet
           key={p.id}
-          id={p.id}
           position={new THREE.Vector3(...p.pos)}
           color={p.color}
           label={p.label}

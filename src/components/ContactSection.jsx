@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone } from "react-icons/fa";
 
 export default function ContactSection() {
@@ -87,11 +86,11 @@ export default function ContactSection() {
             href={link.href}
             variants={itemVariants}
             whileHover={{ x: 8 }}
-            className={`group relative p-5 sm:p-6 rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-800/50 to-slate-900/50 hover:border-${link.color}-500/50 transition-all duration-300 overflow-hidden`}
+            className={`group relative p-5 sm:p-6 rounded-xl border border-slate-700/50 bg-linear-to-br from-slate-800/50 to-slate-900/50 hover:border-${link.color}-500/50 transition-all duration-300 overflow-hidden`}
           >
             {/* Hover background */}
             <div
-              className={`absolute inset-0 bg-gradient-to-r from-${link.color}-600/0 to-${link.color}-600/0 group-hover:from-${link.color}-600/5 group-hover:to-${link.color}-600/5 transition-all duration-300 pointer-events-none`}
+              className={`absolute inset-0 bg-linear-to-r from-${link.color}-600/0 to-${link.color}-600/0 group-hover:from-${link.color}-600/5 group-hover:to-${link.color}-600/5 transition-all duration-300 pointer-events-none`}
             />
 
             <div className="relative flex items-center gap-4">
@@ -118,9 +117,9 @@ export default function ContactSection() {
 
       {/* Divider */}
       <div className="flex items-center gap-4 mb-12">
-        <div className="flex-1 h-px bg-gradient-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
+        <div className="flex-1 h-px bg-linear-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
         <p className="text-slate-500 text-sm font-medium">Find me online</p>
-        <div className="flex-1 h-px bg-gradient-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
+        <div className="flex-1 h-px bg-linear-to-r from-slate-700/0 via-slate-700 to-slate-700/0" />
       </div>
 
       {/* Social links */}
@@ -153,7 +152,7 @@ export default function ContactSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-16 p-6 rounded-2xl bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-500/10 border border-blue-500/20 text-center"
+        className="mt-16 p-6 rounded-2xl bg-linear-to-r from-blue-600/10 via-purple-600/10 to-pink-500/10 border border-blue-500/20 text-center"
       >
         <p className="text-slate-300 mb-4">
           Whether you have a project in mind or just want to chat, I'm always

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { SiLeetcode, SiHackerrank } from "react-icons/si";
 import { fadeUp, staggerContainer } from "./animations";
 
@@ -14,7 +13,7 @@ export default function ProfilesSection() {
     >
       <motion.h2
         variants={fadeUp}
-        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300"
+        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-linear-to-r from-indigo-300 via-purple-300 to-cyan-300"
       >
         Problem Solving Profiles
       </motion.h2>
@@ -91,4 +90,3 @@ export default function ProfilesSection() {
     </motion.section>
   );
 }
-

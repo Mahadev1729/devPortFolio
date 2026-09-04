@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { FaJs, FaReact, FaPython, FaGit } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -116,7 +115,7 @@ export default function SkillsSection() {
                   whileHover={{ scale: 1.05, y: -4 }}
                   className="relative group/skill"
                 >
-                  <div className="rounded-xl bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 p-4 hover:border-blue-500/50 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/20">
+                  <div className="rounded-xl bg-linear-to-br from-slate-800/60 to-slate-900/60 border border-slate-700/50 p-4 hover:border-blue-500/50 transition-all duration-300 backdrop-blur-sm hover:shadow-lg hover:shadow-blue-500/20">
                     <div className="flex flex-col items-center gap-2">
                       <span className="text-2xl sm:text-3xl text-blue-400 group-hover/skill:text-blue-300 transition-colors">
                         {icon}
@@ -127,7 +126,7 @@ export default function SkillsSection() {
                     </div>
 
                     {/* Hover background effect */}
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-600/0 to-purple-600/0 group-hover/skill:from-blue-600/5 group-hover/skill:to-purple-600/5 transition-all duration-300 pointer-events-none" />
+                    <div className="absolute inset-0 rounded-xl bg-linear-to-br from-blue-600/0 to-purple-600/0 group-hover/skill:from-blue-600/5 group-hover/skill:to-purple-600/5 transition-all duration-300 pointer-events-none" />
                   </div>
                 </motion.div>
               ))}
@@ -139,7 +138,7 @@ export default function SkillsSection() {
       {/* Expertise summary */}
       <motion.div
         variants={itemVariants}
-        className="mt-16 p-6 rounded-2xl bg-gradient-to-r from-blue-600/10 via-purple-600/10 to-pink-500/10 border border-blue-500/20 backdrop-blur"
+        className="mt-16 p-6 rounded-2xl bg-linear-to-r from-blue-600/10 via-purple-600/10 to-pink-500/10 border border-blue-500/20 backdrop-blur"
       >
         <p className="text-slate-300">
           <span className="text-blue-400 font-semibold">Specialized in:</span>{" "}

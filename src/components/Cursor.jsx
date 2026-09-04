@@ -7,7 +7,10 @@ export default function Cursor() {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2,
   });
-  const targetRef = useRef({ x: posRef.current.x, y: posRef.current.y });
+  const targetRef = useRef({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
 
   useEffect(() => {
     const node = el.current;

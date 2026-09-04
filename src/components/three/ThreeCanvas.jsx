@@ -1,4 +1,4 @@
-﻿import React, { Suspense, useRef, useState } from "react";
+﻿import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Stars, Html } from "@react-three/drei";
 import MainScene from "./MainScene";

@@ -1,5 +1,4 @@
 ﻿import React from "react";
-import { motion } from "framer-motion";
 
 export default function UIOverlay({ active, onClose, content }) {
   return (

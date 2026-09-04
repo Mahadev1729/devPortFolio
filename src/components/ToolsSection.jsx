@@ -1,5 +1,9 @@
-import { motion } from "framer-motion";
-import { SiVercel, SiRender, SiPythonanywhere, SiStreamlit } from "react-icons/si";
+import {
+  SiVercel,
+  SiRender,
+  SiPythonanywhere,
+  SiStreamlit,
+} from "react-icons/si";
 import { fadeUp, staggerContainer } from "./animations";
 
 export default function ToolsSection() {
@@ -14,7 +18,7 @@ export default function ToolsSection() {
     >
       <motion.h2
         variants={fadeUp}
-        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-purple-300 to-cyan-300"
+        className="text-3xl sm:text-4xl font-extrabold mb-8 sm:mb-12 bg-clip-text text-transparent bg-linear-to-r from-indigo-300 via-purple-300 to-cyan-300"
       >
         Tools & Deployment
       </motion.h2>
@@ -32,7 +36,8 @@ export default function ToolsSection() {
             <h3 className="text-lg sm:text-xl font-semibold">Vercel</h3>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            Deploy fast, scalable frontend apps with automatic CI/CD and global CDN caching.
+            Deploy fast, scalable frontend apps with automatic CI/CD and global
+            CDN caching.
           </p>
         </motion.div>
 
@@ -48,7 +53,8 @@ export default function ToolsSection() {
             <h3 className="text-lg sm:text-xl font-semibold">Render</h3>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            Hosting for APIs, full-stack apps & databases with simple deployments and real-time logs.
+            Hosting for APIs, full-stack apps & databases with simple
+            deployments and real-time logs.
           </p>
         </motion.div>
 
@@ -64,7 +70,8 @@ export default function ToolsSection() {
             <h3 className="text-lg sm:text-xl font-semibold">PythonAnywhere</h3>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            Cloud platform used for hosting Python & Flask apps, automation scripts, & ML dashboards.
+            Cloud platform used for hosting Python & Flask apps, automation
+            scripts, & ML dashboards.
           </p>
         </motion.div>
 
@@ -77,14 +84,16 @@ export default function ToolsSection() {
         >
           <div className="flex items-center gap-3 mb-3">
             <SiStreamlit className="text-3xl text-red-400" />
-            <h3 className="text-lg sm:text-xl font-semibold">Streamlit Cloud</h3>
+            <h3 className="text-lg sm:text-xl font-semibold">
+              Streamlit Cloud
+            </h3>
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
-            One-click deploy ML apps with secure secrets, instant updates & built-in analytics.
+            One-click deploy ML apps with secure secrets, instant updates &
+            built-in analytics.
           </p>
         </motion.div>
       </div>
     </motion.section>
   );
 }
-

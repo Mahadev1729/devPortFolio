@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-export default function HeroSection() {
-  const lines = [
-    "mahadev@portfolio:~$ whoami",
-    "Mahadev Chidanand Athani",
-    "mahadev@portfolio:~$ cat role.txt",
-    "Full-Stack Developer | AI/ML Engineer | Problem Solver",
-    "mahadev@portfolio:~$ skills --top",
-    "React · Python · Machine Learning · Cloud Development",
-  ];
+const lines = [
+  "mahadev@portfolio:~$ whoami",
+  "Mahadev Chidanand Athani",
+  "mahadev@portfolio:~$ cat role.txt",
+  "Full-Stack Developer | AI/ML Engineer | Problem Solver",
+  "mahadev@portfolio:~$ skills --top",
+  "React · Python · Machine Learning · Cloud Development",
+];
 
+export default function HeroSection() {
   const [displayed, setDisplayed] = useState([]);
   const [currentLine, setCurrentLine] = useState("");
   const [lineIndex, setLineIndex] = useState(0);
@@ -36,11 +36,11 @@ export default function HeroSection() {
           setCharIndex(0);
         }
       },
-      charIndex < lines[lineIndex].length ? 30 : 400
+      charIndex < lines[lineIndex].length ? 30 : 400,
     );
 
     return () => clearTimeout(timeout);
-  }, [charIndex, lineIndex, lines, currentLine]);
+  }, [charIndex, lineIndex, currentLine]);
 
   const handleHeroMouseMove = (event) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -64,7 +64,7 @@ export default function HeroSection() {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative max-w-4xl w-full [perspective:1300px]"
+        className="relative max-w-4xl w-full perspective-[1300px]"
         onMouseMove={handleHeroMouseMove}
         onMouseLeave={resetHeroTilt}
       >
@@ -77,9 +77,9 @@ export default function HeroSection() {
           className="relative"
         >
           {/* Subtle gradient background glow */}
-          <div className="absolute -inset-4 blur-3xl rounded-3xl bg-gradient-to-r from-blue-600/15 via-purple-600/15 to-pink-500/10 opacity-60" />
+          <div className="absolute -inset-4 blur-3xl rounded-3xl bg-linear-to-r from-blue-600/15 via-purple-600/15 to-pink-500/10 opacity-60" />
 
-          <div className="relative rounded-2xl bg-gradient-to-br from-slate-900/90 to-slate-950/90 border border-slate-700/50 font-mono text-emerald-400 shadow-card backdrop-blur-xl overflow-hidden">
+          <div className="relative rounded-2xl bg-linear-to-br from-slate-900/90 to-slate-950/90 border border-slate-700/50 font-mono text-emerald-400 shadow-card backdrop-blur-xl overflow-hidden">
             {/* Animated border glow */}
             <motion.div
               className="absolute -inset-px rounded-2xl pointer-events-none"
@@ -114,9 +114,13 @@ export default function HeroSection() {
                   transition={{ duration: 3, repeat: Infinity }}
                 >
                   <motion.div
-                    className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 blur-lg"
+                    className="absolute -inset-1 rounded-full bg-linear-to-r from-blue-600 via-purple-600 to-pink-500 blur-lg"
                     animate={{ rotate: 360 }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 12,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   />
                   <img
                     src="/myImage.jpg"
@@ -187,84 +191,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-          <div className="relative rounded-2xl bg-zinc-900/85 border border-white/15 font-['JetBrains_Mono'] text-green-400 shadow-[0_20px_55px_-20px_rgba(0,0,0,0.9)] backdrop-blur-xl">
-            <div
-              className="absolute inset-0 rounded-2xl opacity-45 pointer-events-none"
-              style={{
-                transform: "translateZ(30px)",
-                background:
-                  "radial-gradient(circle at 20% 20%, rgba(99,102,241,0.35), transparent 45%)",
-              }}
-            />
-            <motion.div
-              className="absolute -inset-px rounded-2xl pointer-events-none"
-              animate={{ opacity: [0.35, 0.7, 0.35] }}
-              transition={{ duration: 4, repeat: Infinity }}
-              style={{
-                background:
-                  "linear-gradient(120deg, rgba(129,140,248,0.35), rgba(34,211,238,0.18), rgba(236,72,153,0.28))",
-                filter: "blur(18px)",
-              }}
-            />
-            <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-zinc-800 rounded-t-xl">
-              <span className="w-3 h-3 bg-red-500 rounded-full" />
-              <span className="w-3 h-3 bg-yellow-400 rounded-full" />
-              <span className="w-3 h-3 bg-green-500 rounded-full" />
-                <span className="ml-2 sm:ml-4 text-[10px] sm:text-xs text-zinc-400">
-                mahadev@portfolio:~
-              </span>
-            </div>
-
-            <div
-              className="p-4 sm:p-6 space-y-3 text-xs sm:text-sm"
-              style={{ transform: "translateZ(40px)" }}
-            >
-              <div className="relative mx-auto w-fit">
-                <motion.div
-                  className="absolute -inset-1 rounded-full bg-gradient-to-r from-indigo-400 via-cyan-400 to-fuchsia-400"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 9, repeat: Infinity, ease: "linear" }}
-                />
-                <img
-                  src="/myImage.jpg"
-                  className="relative mx-auto w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-green-400 shadow-lg shadow-green-500/20"
-                />
-              </div>
-
-              <motion.p
-                animate={{ scale: [1, 1.07, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-center text-base sm:text-lg font-semibold bg-clip-text text-transparent bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400"
-              >
-                ✨ Welcome to the world of Mahadev ✨
-              </motion.p>
-              <div className="flex flex-wrap justify-center gap-2 pb-1">
-                {["AI/ML", "Frontend", "React", "Python"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-xs rounded-full bg-white/5 border border-white/15 text-cyan-200"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {displayed.map((l, i) => (
-                <p key={i}>{l}</p>
-              ))}
-
-              {lineIndex < lines.length && (
-                <p>
-                  {currentLine}
-                  <span className="animate-pulse">█</span>
-                </p>
-              )}
-            </div>
-          </div>
-        </motion.div>
-      </motion.div>
-    </section>
-  );
-}
-

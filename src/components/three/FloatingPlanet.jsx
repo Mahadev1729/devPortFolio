@@ -3,7 +3,6 @@ import { useFrame } from "@react-three/fiber";
 import { Text } from "@react-three/drei";
 
 export default function FloatingPlanet({
-  id,
   position,
   color = "#60a5fa",
   label,

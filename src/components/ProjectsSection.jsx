@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import { motion } from "framer-motion";
 import { FaGithub, FaArrowRight } from "react-icons/fa";
 
 function ProjectCard({ title, tech, description, features, outcome, github }) {
@@ -39,11 +38,11 @@ function ProjectCard({ title, tech, description, features, outcome, github }) {
       onMouseLeave={handleLeave}
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
-      className="group relative rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 p-6 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
+      className="group relative rounded-2xl bg-linear-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 p-6 sm:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden"
       style={{ ...style, transformStyle: "preserve-3d" }}
     >
       {/* Gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/0 via-purple-600/0 to-pink-500/0 group-hover:from-blue-600/5 group-hover:via-purple-600/5 group-hover:to-pink-500/5 transition-all duration-300 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-br from-blue-600/0 via-purple-600/0 to-pink-500/0 group-hover:from-blue-600/5 group-hover:via-purple-600/5 group-hover:to-pink-500/5 transition-all duration-300 pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10">

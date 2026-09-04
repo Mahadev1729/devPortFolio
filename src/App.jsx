@@ -1,18 +1,16 @@
-<<<<<<< HEAD
-
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
 // import Education from './components/Education';
 // import Skills from './components/Skills';
 // import Projects from './components/Projects';
 // import Hackathons from './components/Hackathons.tsx';
 // import Contact from './components/Contact';
 // import Footer from './components/Footer';
-import './index.css'
+import "./index.css";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white relative">
+    <div className="min-h-screen bg-linear-to-b from-gray-900 to-gray-800 text-white relative">
       <div className="relative z-10">
         <Navbar />
         <Hero />
@@ -29,10 +27,3 @@ function App() {
 }
 
 export default App;
-=======
-import Portfolio from "./components/Portfolio";
-
-export default function App() {
-  return <Portfolio />;
-}
->>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9

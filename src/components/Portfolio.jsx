@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import HeroSection from "./HeroSection";
 import SkillsSection from "./SkillsSection";
@@ -20,7 +19,6 @@ const DISABLE_3D = true;
 
 export default function Portfolio() {
   const [selected, setSelected] = useState(null);
-  const [hovered, setHovered] = useState(null);
   const blobRefs = useRef([]);
 
   useEffect(() => {
@@ -56,7 +54,7 @@ export default function Portfolio() {
     };
   }, []);
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 font-['Inter'] overflow-hidden">
+    <div className="relative min-h-screen bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100 font-['Inter'] overflow-hidden">
       <LoadingScreen />
       <Cursor />
       {/* 3D background canvas (lazy loaded) */}
@@ -105,7 +103,7 @@ export default function Portfolio() {
         animate={{ y: 0, opacity: 1 }}
         className="fixed top-3 sm:top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 backdrop-blur-lg bg-slate-950/70 border border-slate-700/40 rounded-xl shadow-lg"
       >
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
+        <div className="absolute inset-0 rounded-xl bg-linear-to-r from-blue-600/5 via-transparent to-cyan-600/5 pointer-events-none" />
         <div className="relative px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center">
           <span className="font-bold tracking-wider text-lg sm:text-xl text-white">
             Mahadev
