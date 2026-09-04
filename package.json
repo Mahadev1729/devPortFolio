@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "my-project",
+=======
+  "name": "devportfolio",
+>>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +14,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "lucide-react": "^0.479.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -28,5 +33,34 @@
     "postcss": "^8.5.3",
     "tailwindcss": "^3.4.17",
     "vite": "^6.1.0"
+=======
+    "@tailwindcss/postcss": "^4.1.18",
+    "framer-motion": "^12.23.26",
+    "lottie-web": "^5.9.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.5.0",
+    "three": "^0.152.0",
+    "@react-three/fiber": "^8.13.0",
+    "@react-three/drei": "^9.45.0",
+    "howler": "^2.2.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "vite": "npm:rolldown-vite@7.2.5"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@7.2.5"
+>>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9
   }
 }

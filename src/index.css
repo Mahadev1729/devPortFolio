@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -155,4 +156,935 @@ html {
     background-position: right center;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(96, 165, 250, 0.4);
+=======
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Playfair+Display:wght@400;700&family=Handlee&display=swap');
+
+/* Cursor spotlight */
+.cursor-spotlight {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 420px;
+    height: 420px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: screen;
+    background: radial-gradient(circle at center, rgba(99, 102, 241, 0.16) 0%, rgba(6, 182, 212, 0.10) 28%, rgba(99, 102, 241, 0.02) 48%, transparent 60%);
+    filter: blur(40px);
+    transition: opacity 200ms ease, transform 120ms linear;
+    opacity: 0.98;
+}
+
+/* Paper / book palette and textures */
+:root {
+    --paper-cream: #FBF6EE;
+    --paper-edge: #E9DCCB;
+    --paper-ink: #3B2F2F;
+    --accent-amber: #C59A6C;
+}
+
+body {
+    font-family: 'Merriweather', Georgia, serif;
+}
+
+.bg-paper {
+    background: linear-gradient(180deg, var(--paper-cream), #F6EDE1);
+}
+
+.bg-cover-gradient {
+    background: linear-gradient(180deg, #E8D4BE, #D9C2A6);
+}
+
+.shadow-page {
+    box-shadow: 0 8px 30px rgba(19, 18, 17, 0.18);
+}
+
+.shadow-cover {
+    box-shadow: 0 10px 60px rgba(19, 18, 17, 0.22);
+}
+
+.rounded-page {
+    top: 0;
+    left: -120%;
+    height: 100%;
+    width: 120%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: skewX(-18deg);
+    animation: shimmerMove 1.8s linear infinite;
+    border-radius: 8px;
+}
+
+/* Paper-like subtle grain using gradients */
+.bg-paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    .mac-traffic-dot {
+        width: 0.75rem;
+        height: 0.75rem;
+        border-radius: 9999px;
+        display: inline-block
+    }
+
+    background-image: linear-gradient(transparent 20%, rgba(0, 0, 0, 0.012) 21%, transparent 22%);
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+/* Book components */
+.book-cover {
+    min-height: 280px;
+}
+
+.book-cover .cover-title {
+    font-family: 'Playfair Display', serif;
+}
+
+.book-page {
+    background: var(--paper-cream);
+    border-radius: 8px;
+    border: 1px solid var(--paper-edge);
+    transition: transform 700ms cubic-bezier(.2, .9, .2, 1);
+    transform-origin: left center;
+}
+
+.book-page.flipped {
+    transform: rotateY(-180deg);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.02);
+}
+
+.book-page .book-page-inner {
+    backface-visibility: hidden;
+}
+
+.book-page.current {
+    outline: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.page-corner {
+    opacity: 0.15;
+    border: 1px dashed rgba(0, 0, 0, 0.04);
+}
+
+.page-corner:hover {
+    opacity: 0.35;
+}
+
+/* Drop cap styling for About */
+.dropcap .book-page-inner p:first-of-type:first-letter {
+    float: left;
+    font-size: 4rem;
+    line-height: 1;
+    margin-right: 0.5rem;
+    font-weight: 700;
+    color: var(--paper-ink);
+}
+
+/* Handwritten tags look */
+.handwritten-page .book-page-inner .skill-tag {
+    font-family: 'Handlee', cursive;
+}
+
+/* Signature style for contact */
+.signature-page .book-page-inner .signature {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .book-wrap {
+        width: 100%;
+    }
+
+    .book-pages {
+        gap: 8px;
+        flex-direction: column;
+    }
+}
+
+/* Loading overlay */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.98), rgba(15, 15, 15, 0.98));
+    z-index: 2000;
+}
+
+.tilt-transition {
+    transition: transform 220ms cubic-bezier(.2, .9, .3, 1), box-shadow 220ms ease;
+}
+
+/* Lottie container sizing */
+.lottie-small {
+    width: 160px;
+    height: 160px;
+}
+
+.lottie-medium {
+    width: 260px;
+    height: 260px;
+}
+
+.lottie-full {
+    width: 320px;
+    height: 320px;
+}
+
+/* Navbar highlight */
+.nav-highlight {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    height: 3px;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.9), rgba(6, 182, 212, 0.9));
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.14);
+    z-index: -1;
+}
+
+.relative>.nav-highlight {
+    z-index: 0;
+}
+
+/* Layered 3D card internals */
+.card-inner {
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.tilt-transition .card-inner h3,
+.tilt-transition .card-inner .card-pop {
+    transform: translateZ(0px);
+    transition: transform 300ms cubic-bezier(.2, .9, .3, 1);
+}
+
+.tilt-transition:hover .card-inner h3,
+.tilt-transition:hover .card-inner .card-pop {
+    transform: translateZ(28px) translateY(-6px);
+}
+
+.tilt-transition .card-inner p,
+.tilt-transition .card-inner ul {
+    transform: translateZ(0px);
+    transition: transform 300ms cubic-bezier(.2, .9, .3, 1);
+}
+
+.tilt-transition:hover .card-inner p,
+.tilt-transition:hover .card-inner ul {
+    transform: translateZ(12px);
+}
+
+.card-ghost-orb {
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 9999px;
+    right: 14px;
+    top: 14px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.18), rgba(6, 182, 212, 0.06));
+    filter: blur(8px);
+    transform: translateZ(40px);
+    pointer-events: none;
+}
+
+/* VS Code mock small helpers */
+@keyframes blink {
+
+    0%,
+    49% {
+        opacity: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 0;
+    }
+}
+
+.animate-blink {
+    animation: blink 1s steps(2, start) infinite;
+    background-color: #9ca3af;
+}
+
+.terminal-glow {
+    box-shadow: 0 -6px 30px rgba(34, 197, 94, 0.06);
+}
+
+/* Neon translucent card for premium dark theme */
+
+.neon-card {
+    border-image: linear-gradient(90deg, rgba(99, 102, 241, 0.7), rgba(124, 58, 237, 0.5), rgba(6, 182, 212, 0.7)) 1;
+}
+
+.neon-card-weak {
+    border-image: linear-gradient(90deg, rgba(99, 102, 241, 0.28), rgba(124, 58, 237, 0.18), rgba(6, 182, 212, 0.28)) 1;
+}
+
+.neon-accent {
+    box-shadow: 0 6px 30px rgba(99, 102, 241, 0.06), 0 2px 8px rgba(6, 182, 212, 0.04);
+}
+
+/* Aurora / moving mesh layers */
+.aurora-wrap {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.aurora-layer {
+    position: absolute;
+    inset: -10%;
+    filter: blur(100px) saturate(120%);
+    mix-blend-mode: screen;
+    opacity: 0.9;
+    transform: translate3d(0, 0, 0);
+}
+
+.aurora-1 {
+    background: radial-gradient(40% 60% at 20% 30%, rgba(99, 102, 241, 0.22), transparent 25%), radial-gradient(30% 40% at 80% 70%, rgba(124, 58, 237, 0.16), transparent 30%);
+    animation: auroraMove1 18s linear infinite alternate;
+}
+
+.aurora-2 {
+    background: radial-gradient(50% 70% at 10% 70%, rgba(6, 182, 212, 0.16), transparent 22%), radial-gradient(30% 40% at 70% 20%, rgba(99, 102, 241, 0.10), transparent 28%);
+    animation: auroraMove2 26s linear infinite alternate;
+    opacity: 0.85
+}
+
+.aurora-3 {
+    background: radial-gradient(60% 60% at 50% 50%, rgba(124, 58, 237, 0.12), transparent 18%), radial-gradient(40% 50% at 40% 80%, rgba(6, 182, 212, 0.08), transparent 35%);
+    animation: auroraMove3 34s linear infinite alternate;
+    opacity: 0.75
+}
+
+@keyframes auroraMove1 {
+    0% {
+        transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.02);
+    }
+
+    50% {
+        transform: translate3d(6%, 4%, 0) rotate(6deg) scale(1.05);
+    }
+
+    100% {
+        transform: translate3d(-6%, -4%, 0) rotate(0deg) scale(1.02);
+    }
+}
+
+@keyframes auroraMove2 {
+    0% {
+        transform: translate3d(8%, 6%, 0) rotate(-4deg) scale(1.01);
+    }
+
+    50% {
+        transform: translate3d(-8%, -6%, 0) rotate(4deg) scale(1.04);
+    }
+
+    100% {
+        transform: translate3d(8%, 6%, 0) rotate(-4deg) scale(1.01);
+    }
+}
+
+@keyframes auroraMove3 {
+    0% {
+        transform: translate3d(-10%, 8%, 0) rotate(2deg) scale(1);
+    }
+
+    50% {
+        transform: translate3d(10%, -8%, 0) rotate(-2deg) scale(1.03);
+    }
+
+    100% {
+        transform: translate3d(-10%, 8%, 0) rotate(2deg) scale(1);
+    }
+}
+
+/* Respect user reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+/* Timeline styles for Education & Experience */
+.timeline {
+    position: relative;
+    display: block;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 96px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, rgba(124, 58, 237, 0.25), rgba(96, 165, 250, 0.25));
+    border-radius: 2px;
+}
+
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding-left: 140px;
+}
+
+.timeline-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+
+.timeline-item::before {
+    content: "";
+    position: absolute;
+    left: 96px;
+    top: 8px;
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 35% 25%, #60a5fa, #7c3aed);
+    transform: translateX(-50%);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+}
+
+.timeline-date {
+    grid-column: 1/2;
+    text-align: right;
+    padding-right: 1rem;
+    align-self: start;
+}
+
+.timeline-card {
+    grid-column: 2/3;
+}
+
+@media (max-width: 640px) {
+    .timeline-line {
+        left: 28px;
+    }
+
+    .timeline-items {
+        padding-left: 56px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-date {
+        grid-column: 1/2;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .timeline-card {
+        grid-column: 1/2;
+    }
+}
+
+/* Global light that follows mouse using CSS vars set by Cursor component */
+.global-light {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.05) 12%, transparent 28%), radial-gradient(circle at calc(var(--mx, 50%) - 10%) calc(var(--my, 50%) - 6%), rgba(124, 58, 237, 0.06) 0%, transparent 18%);
+    mix-blend-mode: screen;
+    transition: background 80ms linear;
+}
+
+/* Floating tech icons */
+.floating-tech {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.floating-tech-item {
+    position: absolute;
+    transform: translate3d(-50%, -50%, 0);
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 9999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    box-shadow: 0 6px 26px rgba(2, 6, 23, 0.55);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.95);
+    mix-blend-mode: screen;
+    transition: transform 220ms cubic-bezier(.2, .9, .3, 1), box-shadow 220ms ease;
+    animation-name: floatY;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    will-change: transform;
+}
+
+.floating-tech-item .tech-icon {
+    filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes floatY {
+    0% {
+        transform: translate3d(-50%, -50%, 0) translateY(-6px) rotate(0.001deg);
+    }
+
+    100% {
+        transform: translate3d(-50%, -50%, 0) translateY(10px) rotate(1deg);
+    }
+}
+
+/* Bento grid layout: uneven, premium blocks */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-rows: minmax(140px, auto);
+    gap: 1rem;
+    align-items: start;
+}
+
+/* Shimmer / skeleton UI */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+}
+
+.shimmer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-110%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+    animation: shimmerMove 1.4s linear infinite;
+    mix-blend-mode: screen;
+}
+
+.shimmer-line {
+    height: 12px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+.skeleton-card {
+    width: 100%;
+    height: 160px;
+    border-radius: 12px;
+}
+
+@keyframes shimmerMove {
+    0% {
+        transform: translateX(-110%);
+    }
+
+    100% {
+        transform: translateX(110%);
+    }
+}
+
+
+.bento-item {
+    position: relative;
+}
+
+/* Book modal + page flip */
+.book-modal {
+    pointer-events: auto;
+}
+
+.book {
+    width: 100%;
+    max-width: 900px;
+    height: 520px;
+    margin: 0 auto;
+    perspective: 1800px;
+    position: relative;
+}
+
+.book .page {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 50%;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008));
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform-origin: left center;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.book .page-left {
+    left: 0;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    z-index: 30;
+    padding: 24px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.book .page-right {
+    right: 0;
+    left: 50%;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    z-index: 20;
+    padding: 24px;
+    border-left: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.book .page-content {
+    width: 100%;
+    padding: 16px;
+}
+
+.book-modal .book {
+    transform-style: preserve-3d;
+    transition: transform 700ms cubic-bezier(.2, .9, .2, 1);
+}
+
+/* animate slight open on entry */
+.book-modal .book {
+    animation: openBook 420ms ease forwards;
+}
+
+@keyframes openBook {
+    from {
+        transform: rotateX(2deg) scale(0.98);
+    }
+
+    to {
+        transform: rotateX(0deg) scale(1);
+    }
+}
+
+/* reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+    .book-modal .book {
+        animation: none;
+    }
+}
+
+.bento-item.item-a {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 2;
+}
+
+.bento-item.item-b {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 1;
+}
+
+.bento-item.item-c {
+    grid-column: 5 / span 2;
+    grid-row: 2 / span 1;
+}
+
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .bento-item.item-a,
+    .bento-item.item-b,
+    .bento-item.item-c {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}
+
+/* Book layout styles */
+.book-view {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-container {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+.book-spine {
+    pointer-events: none;
+}
+
+.book-pages {
+    display: flex;
+    width: 100%;
+}
+
+.book-page {
+    min-height: 60vh;
+    max-height: 80vh;
+    overflow: auto;
+}
+
+.book-controls button {
+    cursor: pointer;
+}
+
+@media (max-width: 640px) {
+    .book-pages {
+        flex-direction: column;
+    }
+
+    .book-page {
+        width: 100% !important;
+    }
+
+    .book-spine {
+        display: none;
+    }
+}
+
+/* Single-page book styles */
+.single-book {
+    min-height: 68vh;
+}
+
+.single-page {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.page-inner {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: transform 700ms cubic-bezier(.2, .9, .2, 1);
+}
+
+.page-inner.flipped {
+    transform: rotateY(-180deg);
+}
+
+.page-inner.pre-flip {
+    transform: rotateY(-180deg);
+    transition: none;
+}
+
+.page-inner.anim-in {
+    transform: rotateY(0deg);
+    transition: transform 700ms cubic-bezier(.2, .9, .2, 1);
+}
+
+.page-inner.anim-out {
+    transform: rotateY(-180deg);
+    transition: transform 700ms cubic-bezier(.2, .9, .2, 1);
+}
+
+/* Visual polish for single pages */
+.single-page {
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.single-page .page-inner {
+    box-shadow: 0 12px 40px rgba(19, 18, 17, 0.12);
+    border: 1px solid var(--paper-edge);
+}
+
+.single-page .page-inner h1,
+.single-page .page-inner h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+.single-page .page-inner p {
+    color: var(--paper-ink);
+}
+
+.single-page .page-inner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.02));
+}
+
+/* corner fold hover */
+.single-page:hover .page-inner {
+    transform: translateY(-6px) rotateX(1deg);
+}
+
+.single-page .page-inner .corner-fold {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.03), rgba(255, 255, 255, 0.02));
+    border-radius: 6px;
+    opacity: 0.6;
+}
+
+/* page number */
+.single-page .page-num {
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
+    font-size: 12px;
+    color: rgba(59, 47, 47, 0.7);
+}
+
+@media (max-width: 640px) {
+    .single-book {
+        min-height: 60vh;
+    }
+
+    .single-page .page-inner {
+        padding: 14px;
+    }
+}
+
+/* Professional/responsive polish */
+.book-wrap {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 18px;
+    transform-origin: center top;
+    transition: transform 360ms ease;
+}
+
+.book-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+    border-radius: 12px;
+    transition: transform 360ms cubic-bezier(.2, .9, .2, 1), box-shadow 360ms ease;
+    will-change: transform;
+}
+
+.book-cover:hover {
+    transform: translateY(-6px) rotateX(2deg) scale(1.01);
+    box-shadow: 0 18px 60px rgba(19, 18, 17, 0.28);
+}
+
+.book-pages {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    perspective: 2200px;
+}
+
+.book-page {
+    width: 100%;
+    min-height: 60vh;
+    max-height: 78vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.book-page .book-page-inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    color: var(--paper-ink);
+    font-size: 1.02rem;
+    line-height: 1.65;
+}
+
+.book-page h2,
+.book-page h3 {
+    font-family: 'Playfair Display', serif;
+    color: #4a2f2f;
+}
+
+.book-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.book-controls button {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: #3B2F2F;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.book-controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+}
+
+/* Page corner styling */
+.page-corner {
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.02));
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+/* Hide decorative floating dots on small screens */
+@media (max-width: 640px) {
+    .floating-tech {
+        display: none;
+    }
+
+    .book-wrap {
+        transform: scale(0.92);
+    }
+
+    .book-page {
+        padding: 14px;
+    }
+
+    .book-page .book-page-inner {
+        font-size: 0.98rem;
+    }
+
+    .book-controls {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 12px;
+        z-index: 60;
+    }
+}
+
+@media (max-width: 1024px) {
+    .book-wrap {
+        transform: scale(0.96);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .book-cover,
+    .book-page,
+    .book-controls button {
+        transition: none !important;
+        animation: none !important;
+    }
+>>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9
 }

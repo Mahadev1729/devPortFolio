@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -28,3 +29,10 @@ function App() {
 }
 
 export default App;
+=======
+import Portfolio from "./components/Portfolio";
+
+export default function App() {
+  return <Portfolio />;
+}
+>>>>>>> 53903ee695b1b9907bc94e972a99ed2bd6ffffd9
